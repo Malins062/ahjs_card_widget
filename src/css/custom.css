@@ -1,3 +1,7 @@
+body {
+    color: #333;
+}
+
 .center {
     text-align: center;
 }
@@ -6,17 +10,22 @@
     margin: 10px 0;
     height: 25px;
 }
+
 .cards li {
     display: block;
     float: left;
 }
+
 .card {
     float: left;
     width: 39px;
     height: 25px;
-    text-indent: -9999px;
-    background-position: 0 0;
+    /* text-indent: -9999px; */
+    /* background-position: 0 0; */
     margin-right: 4px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 #submitform {
@@ -24,13 +33,14 @@
 }
 
 .card .cdisabled {
-    background-position: 0 -25px;
+    /* background-position: 0 -25px; */
     opacity: .3;
 }
 
-.card .visa {
-    background-image: url('../img/card-visa.gif');
-}
+/* .card .visa {
+    background-image: url("../img/card-visa.gif");
+} */
+/*
 .card .amex {
     background-image: url('../img/card-amex.gif');
 }
@@ -46,6 +56,8 @@
 .card .diners_club { 
     background-image: url('../img/card-diners.gif');
 }
+*/
+
 .card .mir {
-    background-image: url('../img/card-mir.svg');
-}
+    background-image: url('../img/card-mir.svg');    
+} 
