@@ -1,5 +1,5 @@
 body {
-    color: #333;
+    background-color: lightgray;
 }
 
 .center {
@@ -26,10 +26,6 @@ body {
     background-position: center center;
     background-repeat: no-repeat;
     background-size: contain;
-}
-
-#submitform {
-    margin-left: 10px;
 }
 
 .card .cdisabled {
