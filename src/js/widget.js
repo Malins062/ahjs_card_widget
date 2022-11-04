@@ -9,9 +9,10 @@ export default class CardNumberWidget {
     const formHTML = `
         <form id="form" class="form-inline row g-2" novalidate="novalidate">
           <div class="form-group col-md-8 mt-1">
-              <input class="form-control" id="cardnumber-input" name="card_number" type="text" placeholder="Введите номер карты">
+              <input class="form-control" data-id="cardnumber-input" name="card_number" type="text" placeholder="Введите номер карты" aria-describedby="cardnumber-feeddback">
+              <div id="cardnumber-feeddback" class="invalid-feedback">Карта не идентифицирована</div>
           </div>
-          <button type="submit" id="cardnumber-submit" class="btn btn-success col-md-4 mt-1" title="Нажмите для проверки карты">Проверить</button>
+          <button type="submit" data-id="cardnumber-submit" class="btn btn-success col-md-4 mt-1" title="Нажмите для проверки карты">Проверить</button>
         </form>`,
       imagesCardsHTML = `
         <ul class="cards list-unstyled">
@@ -42,7 +43,7 @@ export default class CardNumberWidget {
                 </tr>
                 <tr>
                     <td>Diners Club</td>
-                    <th class="d-flex justify-content-center"><div class="card diners_club" title="Diners Club"></div></th>
+                    <th class="d-flex justify-content-center"><div class="card diners" title="Diners Club"></div></th>
                     <td>30569309025904</td>
                 </tr>
                 <tr>
@@ -95,6 +96,7 @@ export default class CardNumberWidget {
 
     this.parentEl.innerHTML = this.constructor.markup(showImages, showDescription);
     const submit = this.parentEl.querySelector(this.constructor.submitSelector);
+    // console.log(this.parentEl, this.constructor.submitSelector, submit);
     submit.addEventListener('click', evt => this.onSubmit(evt));
   }
 
@@ -102,8 +104,11 @@ export default class CardNumberWidget {
     evt.preventDefault();
     const inputEl = this.parentEl.querySelector(this.constructor.inputSelector),
       validCard = isValidCard(inputEl.value);
+    console.log(validCard);
     if (validCard) {
-
+      inputEl.classList.remove('is-invalid');
+    } else {
+      inputEl.classList.add('is-invalid');
     }
   }
 }
