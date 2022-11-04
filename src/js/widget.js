@@ -105,10 +105,10 @@ export default class CardNumberWidget {
     const inputEl = this.parentEl.querySelector(this.constructor.inputSelector),
       validCard = isValidCard(inputEl.value);
     console.log(validCard);
-    if (validCard) {
-      inputEl.classList.remove('is-invalid');
-    } else {
+    if (!validCard) {
       inputEl.classList.add('is-invalid');
+    } else {
+      inputEl.classList.remove('is-invalid');
     }
   }
 }

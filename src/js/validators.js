@@ -13,7 +13,7 @@ export function isValidCard(value) {
 
   RULES_CARDS.forEach(element => {
     const exp = new RegExp(element[1]);
-    console.log(value, element[1], exp.test(value));
+    console.log(value, element[0], element[1], exp.test(value));
     if (exp.test(value)) {
       return element[0];
     }
