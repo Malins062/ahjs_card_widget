@@ -11,7 +11,8 @@ export default class CardNumberWidget {
         <form id="form" class="form-inline row g-2" novalidate="novalidate">
           <div class="form-group col-md-8 mt-1">
               <input class="form-control" data-id="cardnumber-input" name="card_number" type="text" placeholder="Введите номер карты" aria-describedby="cardnumber-feeddback">
-              <div id="cardnumber-feeddback" class="invalid-feedback">Карта не идентифицирована</div>
+              <div id="cardnumber-invalid-feedback" class="invalid-feedback">Карта не идентифицирована</div>
+              <div id="cardnumber-valid-feedback" class="valid-feedback">Карта не идентифицирована</div>
           </div>
           <button type="submit" data-id="cardnumber-submit" class="btn btn-success col-md-4 mt-1" title="Нажмите для проверки карты">Проверить</button>
         </form>`,
@@ -88,6 +89,10 @@ export default class CardNumberWidget {
     return '[data-id=cardnumber-submit]';
   }
   
+  static get validFeedbackSelector() {
+    return '[id=cardnumber-valid-feedback]';
+  }
+  
   bindToDOM(showImages=false, showDescription=false) {
     /*
       Параметры:
@@ -106,16 +111,21 @@ export default class CardNumberWidget {
     evt.preventDefault();
     const inputEl = this.parentEl.querySelector(this.constructor.inputSelector),
       validCard = isValidCard(inputEl.value);
-    console.log(validCard);
+    // console.log(validCard);
     if (!validCard) {
       inputEl.classList.add('is-invalid');
+      inputEl.classList.remove('is-valid');
       if (this.showImages && this.lastActiveCardEl !== undefined) {
           this.lastActiveCardEl.classList.add('disabled');
       } 
 
 
     } else {
+      const feedbackEl = this.parentEl.querySelector(this.constructor.validFeedbackSelector);
+      feedbackEl.innerHTML = `Карта идентифицирована - ${validCard.titlе}`;
+
       inputEl.classList.remove('is-invalid');
+      inputEl.classList.add('is-valid');
 
       if (this.showImages) {
         if (this.lastActiveCardEl !== undefined) {

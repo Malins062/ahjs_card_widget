@@ -30,7 +30,7 @@ export function isValidCard(value) {
     {
       class: 'jcb',
       titlе: 'JCB',
-      regexp: '',
+      regexp: '^(?:2131|1800|35\d{3})\d{11}$',
     },
     
     {
@@ -55,7 +55,7 @@ export function isValidCard(value) {
 
   for (let rule of RULES_CARDS) {
     const exp = new RegExp(rule.regexp);
-    console.log(value, rule, exp.test(value));
+    // console.log(value, rule, exp.test(value));
     if (exp.test(value)) {
       return rule;
     }
