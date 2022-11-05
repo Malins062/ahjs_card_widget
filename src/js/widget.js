@@ -3,6 +3,7 @@ import { isValidCard } from './validators';
 export default class CardNumberWidget {
   constructor(parentEl) {
     this.parentEl = parentEl;
+    this.lastActiveCardEl = undefined;
   }
 
   static markup(showImages=true, showDescription=true) {
@@ -94,7 +95,8 @@ export default class CardNumberWidget {
         showDescription - показывать/не показывать описание карт (по умолчанию - не показывать)
     */
 
-    this.parentEl.innerHTML = this.constructor.markup(showImages, showDescription);
+    this.showImages = showImages;
+    this.parentEl.innerHTML = this.constructor.markup(this.showImages, showDescription);
     const submit = this.parentEl.querySelector(this.constructor.submitSelector);
     // console.log(this.parentEl, this.constructor.submitSelector, submit);
     submit.addEventListener('click', evt => this.onSubmit(evt));
@@ -107,8 +109,23 @@ export default class CardNumberWidget {
     console.log(validCard);
     if (!validCard) {
       inputEl.classList.add('is-invalid');
+      if (this.showImages && this.lastActiveCardEl !== undefined) {
+          this.lastActiveCardEl.classList.add('disabled');
+      } 
+
+
     } else {
       inputEl.classList.remove('is-invalid');
+
+      if (this.showImages) {
+        if (this.lastActiveCardEl !== undefined) {
+          this.lastActiveCardEl.classList.add('disabled');
+        } 
+        const cardEl = this.parentEl.querySelector(`.${validCard.class}`);
+        console.log(validCard, cardEl);
+        cardEl.classList.remove('disabled');
+        this.lastActiveCardEl = cardEl;  
+      }
     }
   }
 }

@@ -9,7 +9,6 @@ body {
 
 .cards li {
     display: block;
-    border-radius: 2px;
     float: left;
 }
 
