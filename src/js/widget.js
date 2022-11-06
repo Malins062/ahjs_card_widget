@@ -71,7 +71,7 @@ export default class CardNumberWidget {
                 <tr>
                     <td>МИР</td>
                     <th class="d-flex justify-content-center"><div class="card mir" title="МИР"></div></th>
-                    <td>2111111111111111</td>
+                    <td>2204111111111111</td>
                 </tr>
             </tbody>
         </table>`;
@@ -132,7 +132,7 @@ export default class CardNumberWidget {
           this.lastActiveCardEl.classList.add('disabled');
         } 
         const cardEl = this.parentEl.querySelector(`.${validCard.class}`);
-        console.log(validCard, cardEl);
+        // console.log(validCard, cardEl);
         cardEl.classList.remove('disabled');
         this.lastActiveCardEl = cardEl;  
       }
