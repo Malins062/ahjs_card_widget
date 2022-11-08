@@ -1,5 +1,5 @@
 {
-  "name": "ahjs-dom-game",
+  "name": "ahjs-widget-card-number",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,8 +7,9 @@
     "start": "webpack serve --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "lint": "eslint --fix",
-    "test": "jest",
-    "coverage": "jest --coverage",
+    "test": "jest --testPathPattern=./src/",
+    "coverage": "jest --testPathPattern=./src/ --coverage",
+    "e2e": "jest --testPathPattern=./e2e/ --runInBand",
     "doc": "jsdoc -c jsdoc.conf.json",
     "preshow:coverage": "npm run coverage",
     "show:coverage": "live-server coverage/lcov-report",
@@ -19,18 +20,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Malins062/ahjs_enviroment.git"
+    "url": "git+https://github.com/Malins062/ahjs_card_widget.git"
   },
   "keywords": [
-    "dom",
-    "game"
+    "card",
+    "validator",
+    "tests",
+    "number"
   ],
   "author": "Alexei Malinovskiy",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Malins062/ahjs_enviroment/issues"
+    "url": "https://github.com/Malins062/ahjs_card_widget/issues"
   },
-  "homepage": "https://github.com/Malins062/ahjs_enviroment#readme",
+  "homepage": "https://github.com/Malins062/ahjs_card_widget#readme",
   "devDependencies": {
     "@babel/cli": "^7.12.10",
     "@babel/core": "^7.12.10",
@@ -43,6 +46,10 @@
     "eslint-plugin-import": "^2.22.1",
     "html-loader": "^1.3.2",
     "html-webpack-plugin": "^4.5.1",
+    "jest": "^25.2.4",
+    "jest-puppeteer": "^4.4.0",
+    "jsdoc": "^3.6.3",
+    "puppeteer": "^10.0.0",    
     "live-server": "^1.2.1",
     "mini-css-extract-plugin": "^1.3.3",
     "terser-webpack-plugin": "^5.0.3",
