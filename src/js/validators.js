@@ -66,6 +66,8 @@ export function isValidCard(value) {
   return false;
 }
 
+
+// Функция валидации банковских карт по алгоритму MOON
 function isValidCheckDigit(cardNumber) {
 
   const arr = [];
