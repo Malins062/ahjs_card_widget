@@ -8,13 +8,13 @@ export default class CardNumberWidget {
 
   static markup(showImages=true, showDescription=true) {
     const formHTML = `
-        <form id="form" class="form-inline row g-2" novalidate="novalidate">
+        <form id="form" class="cardnumber-form-widget form-inline row g-2" novalidate="novalidate">
           <div class="form-group col-md-8 mt-1">
-              <input class="form-control" data-id="cardnumber-input" name="card_number" type="text" placeholder="Введите номер карты" aria-describedby="cardnumber-feeddback">
+              <input class="form-control" id="cardnumber-input" name="card_number" type="text" placeholder="Введите номер карты" aria-describedby="cardnumber-feeddback">
               <div id="cardnumber-invalid-feedback" class="invalid-feedback">Карта не идентифицирована</div>
               <div id="cardnumber-valid-feedback" class="valid-feedback">Карта не идентифицирована</div>
           </div>
-          <button type="submit" data-id="cardnumber-submit" class="btn btn-success col-md-4 mt-1" title="Нажмите для проверки карты">Проверить</button>
+          <button type="submit" id="cardnumber-submit" class="submit btn btn-success col-md-4 mt-1" title="Нажмите для проверки карты">Проверить</button>
         </form>`,
       imagesCardsHTML = `
         <ul class="cards list-unstyled">
@@ -82,11 +82,11 @@ export default class CardNumberWidget {
   }
 
   static get inputSelector() {
-    return '[data-id=cardnumber-input]';
+    return '[id=cardnumber-input]';
   }
 
   static get submitSelector() {
-    return '[data-id=cardnumber-submit]';
+    return '[id=cardnumber-submit]';
   }
   
   static get validFeedbackSelector() {
