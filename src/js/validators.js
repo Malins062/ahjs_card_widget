@@ -56,7 +56,7 @@ export function isValidCard(value) {
   if (isValidCheckDigit(value)) {
     for (let rule of RULES_CARDS) {
       const exp = new RegExp(rule.regexp);
-      // console.log(value, rule, exp.test(value));
+      console.log(value, rule, exp.test(value));
       if (exp.test(value)) {
       // if (exp.test(value)) {
         return [rule.class, rule.titlе];
@@ -85,6 +85,7 @@ function isValidCheckDigit(cardNumber) {
       }
   }
   const summ = arr.reduce(function(a, b) { return a + b; });
+  console.log(cardNumber, Boolean(!(summ % 10)));
   return Boolean(!(summ % 10));
 
 }
