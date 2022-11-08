@@ -47,11 +47,11 @@
     "html-loader": "^1.0.0",
     "html-webpack-plugin": "^4.0.3",
     "jest": "^25.2.4",
-    "jest-puppeteer": "^2.0.0",
+    "jest-puppeteer": "^latest",
     "jsdoc": "^3.6.3",
     "live-server": "^1.2.1",
     "mini-css-extract-plugin": "^0.9.0",
-    "puppeteer": "^10.4.0",
+    "puppeteer": "^latest",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
