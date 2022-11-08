@@ -122,7 +122,7 @@ export default class CardNumberWidget {
 
     } else {
       const feedbackEl = this.parentEl.querySelector(this.constructor.validFeedbackSelector);
-      feedbackEl.innerHTML = `Карта идентифицирована - ${validCard.titlе}`;
+      feedbackEl.innerHTML = `Карта идентифицирована - ${validCard[1]}`;
 
       inputEl.classList.remove('is-invalid');
       inputEl.classList.add('is-valid');
@@ -131,7 +131,7 @@ export default class CardNumberWidget {
         if (this.lastActiveCardEl !== undefined) {
           this.lastActiveCardEl.classList.add('disabled');
         } 
-        const cardEl = this.parentEl.querySelector(`.${validCard.class}`);
+        const cardEl = this.parentEl.querySelector(`.${validCard[0]}`);
         // console.log(validCard, cardEl);
         cardEl.classList.remove('disabled');
         this.lastActiveCardEl = cardEl;  

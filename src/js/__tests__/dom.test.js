@@ -12,9 +12,9 @@ test('should render self', () => {
 });
 
 test('should validate input', () => {
-  document.body.innerHTML = '<div id="container"></div>';
+  document.body.innerHTML = '<div id="widget-container"></div>';
 
-  const container = document.querySelector('#container');
+  const container = document.querySelector('#widget-container');
   const widget = new CardNumberWidget(container);
 
   widget.bindToDOM();

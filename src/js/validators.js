@@ -59,7 +59,7 @@ export function isValidCard(value) {
       // console.log(value, rule, exp.test(value));
       if (exp.test(value)) {
       // if (exp.test(value)) {
-        return rule;
+        return [rule.class, rule.titlе];
       }
     }  
   }
