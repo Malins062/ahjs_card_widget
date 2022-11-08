@@ -67,23 +67,22 @@ export function isValidCard(value) {
 }
 
 function isValidCheckDigit(cardNumber) {
-  let sum = 0;
-  const nums =  String(cardNumber).split('').reverse().map(Number),
-    controlDigit = nums[0];
-  console.log('nums, sum, controlDigit');
-  console.log(nums, sum,  controlDigit);
-  for (let i = 1; i < nums.length; i++) {
-    if (i % 2 !== 0) {
-      nums[i] = nums[i] * 2;
-      if (nums[i] > 9 ) {
-        nums[i] -= 9;
-      }
-    }
-    sum += nums[i];
-    console.log(i, nums, sum);
-  }
 
-  console.log(`${sum % 10}=${controlDigit}`);
-  return (sum % 10 === controlDigit)
+  const arr = [];
+  for(var i = 0; i < cardNumber.length; i++) {
+    if(i % 2 === 0) {
+      const m = parseInt(cardNumber[i]) * 2;
+      if(m > 9) {
+        arr.push(m - 9);
+      } else {
+        arr.push(m);
+      } 
+    } else {
+        const n = parseInt(cardNumber[i]);
+        arr.push(n)
+      }
+  }
+  const summ = arr.reduce(function(a, b) { return a + b; });
+  return Boolean(!(summ % 10));
 
 }
