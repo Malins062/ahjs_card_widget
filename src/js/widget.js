@@ -34,7 +34,7 @@ export default class CardNumberWidget {
                 <tr class="">
                     <th>Тип карты</th>
                     <th>Логотип</th>
-                    <th>Допустимый номер</th>
+                    <th>Примеры номеров</th>
                 </tr>
             </thead>
             <tbody>
