@@ -1,5 +1,7 @@
 # Домашнее задание к занятию "4.Организация тестирования"
 
+[![Build status](https://ci.appveyor.com/api/projects/status/qbj764opjtdpw2pl/branch/main?svg=true)](https://ci.appveyor.com/project/Malins062/ahjs-card-widget/branch/main)]
+
 Правила сдачи задания:
 
 1. **Важно**: в рамках этого ДЗ можно использовать любой менеджер пакетов
