@@ -53,14 +53,15 @@ export function isValidCard(value) {
 
   ]
 
-  // 4556737586899855
-  for (let rule of RULES_CARDS) {
-    const exp = new RegExp(rule.regexp);
-    // console.log(value, rule, exp.test(value));
-    if (isValidCheckDigit(value) && exp.test(value)) {
-    // if (exp.test(value)) {
-      return rule;
-    }
+  if (isValidCheckDigit(value)) {
+    for (let rule of RULES_CARDS) {
+      const exp = new RegExp(rule.regexp);
+      // console.log(value, rule, exp.test(value));
+      if (exp.test(value)) {
+      // if (exp.test(value)) {
+        return rule;
+      }
+    }  
   }
   return false;
 }
@@ -69,21 +70,20 @@ function isValidCheckDigit(cardNumber) {
   let sum = 0;
   const nums =  String(cardNumber).split('').reverse().map(Number),
     controlDigit = nums[0];
-  // console.log('nums, sum, controlDigit');
-  // console.log(nums, sum,  controlDigit);
+  console.log('nums, sum, controlDigit');
+  console.log(nums, sum,  controlDigit);
   for (let i = 1; i < nums.length; i++) {
     if (i % 2 !== 0) {
-      sum += nums[i] * 2;
-      if ((nums[i] *2) > 9 ) {
-        sum -= 9;
+      nums[i] = nums[i] * 2;
+      if (nums[i] > 9 ) {
+        nums[i] -= 9;
       }
-    } else {
-      sum += nums[i];
     }
-    // console.log(i, nums[i], sum);
+    sum += nums[i];
+    console.log(i, nums, sum);
   }
 
-  // console.log(`${sum % 10}=${controlDigit}`);
+  console.log(`${sum % 10}=${controlDigit}`);
   return (sum % 10 === controlDigit)
 
 }

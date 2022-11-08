@@ -41,37 +41,37 @@ export default class CardNumberWidget {
                 <tr>
                     <td>American Express</td>
                     <th class="d-flex justify-content-center"><div class="card amex" title="American Express"></div></th>
-                    <td>371449635398431</td>
+                    <td>348446461372266</td>
                 </tr>
                 <tr>
                     <td>Diners Club</td>
                     <th class="d-flex justify-content-center"><div class="card diners" title="Diners Club"></div></th>
-                    <td>30569309025904</td>
+                    <td>36471414338070</td>
                 </tr>
                 <tr>
                     <td>Discover</td>
                     <th class="d-flex justify-content-center"><div class="card discover" title="Discover"></div></th>
-                    <td>6011111111111117</td>
+                    <td>6011168785829283</td>
                 </tr>
                 <tr>
                     <td>JCB</td>
                     <th class="d-flex justify-content-center"><div class="card jcb" title="JCB"></div></th>
-                    <td>3530111333300000</td>
+                    <td>3529992726838059</td>
                 </tr>
                 <tr>
                     <td>MasterCard</td>
                     <th class="d-flex justify-content-center"><div class="card master" title="MasterCard"></div></th>
-                    <td>5555555555554444</td>
+                    <td>5346028387436812</td>
                 </tr>
                 <tr>
                     <td>Visa</td>
                     <th class="d-flex justify-content-center"><div class="card visa" title="Visa"></div></th>
-                    <td>4111111111111111</td>
+                    <td>4556737586899855</td>
                 </tr>
                 <tr>
                     <td>МИР</td>
                     <th class="d-flex justify-content-center"><div class="card mir" title="МИР"></div></th>
-                    <td>2204111111111111</td>
+                    <td>2200240768512994</td>
                 </tr>
             </tbody>
         </table>`;
