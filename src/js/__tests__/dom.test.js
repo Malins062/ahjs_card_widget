@@ -4,11 +4,12 @@ test('Should render self', () => {
   document.body.innerHTML = '<div id="widget-container"></div>';
 
   const container = document.querySelector('#widget-container');
-  const widget = new CardNumberWidget(container, false, false);
+  const widget = new CardNumberWidget(container);
 
   widget.bindToDOM();
 
-  expect(container.innerHTML).toEqual(CardNumberWidget.formHTML);
+  expect(container.innerHTML).toEqual(CardNumberWidget.imagesCardsHTML + CardNumberWidget.formHTML + 
+    CardNumberWidget.descriptionHTML);
 });
 
 test('Should validate input', () => {
@@ -25,5 +26,5 @@ test('Should validate input', () => {
   const submit = container.querySelector(CardNumberWidget.submitSelector);
   submit.click();
 
-  expect(input.classList.contains('valid')).toBeTruthy();
+  expect(input.classList.contains('is-valid')).toBeTruthy();
 });
