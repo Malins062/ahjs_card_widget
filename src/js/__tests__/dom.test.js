@@ -1,9 +1,9 @@
 import CardNumberWidget from '../widget';
 
-test('should render self', () => {
-  document.body.innerHTML = '<div id="container"></div>';
+test('Should render self', () => {
+  document.body.innerHTML = '<div id="widget-container"></div>';
 
-  const container = document.querySelector('#container');
+  const container = document.querySelector('#widget-container');
   const widget = new CardNumberWidget(container);
 
   widget.bindToDOM();
@@ -11,7 +11,7 @@ test('should render self', () => {
   expect(container.innerHTML).toEqual(CardNumberWidget.markup);
 });
 
-test('should validate input', () => {
+test('Should validate input', () => {
   document.body.innerHTML = '<div id="widget-container"></div>';
 
   const container = document.querySelector('#widget-container');

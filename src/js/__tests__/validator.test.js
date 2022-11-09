@@ -10,7 +10,7 @@ test.each([
   ['false for invalid card number', ' ', false],
   ['false for invalid card number', ' assa', false],
   ['false for invalid card number', '36471414338070 ', false],
-])(('it should be %s'), (_, input, expected) => {
+])(('It should be %s'), (_, input, expected) => {
   if (!Boolean(expected)) {
     expect(isValidCard(input)).toBe(expected);
   } else {

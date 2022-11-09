@@ -1,13 +1,21 @@
 import { isValidCard } from './validators';
 
 export default class CardNumberWidget {
-  constructor(parentEl) {
+  constructor(parentEl, showImages=true, showDescription=true) {
+    /*
+      Параметры:
+        parentEl - контейнер
+        showImages - показывать/не показывать изображения карт (по умолчанию - не показывать)
+        showDescription - показывать/не показывать описание карт (по умолчанию - не показывать)
+    */
     this.parentEl = parentEl;
     this.lastActiveCardEl = undefined;
+    this.showImages = showImages;
+    this.showDescription = showDescription;
   }
 
-  static markup(showImages=true, showDescription=true) {
-    const formHTML = `
+  static get formHTML() {
+    return `
         <form id="form" class="cardnumber-form-widget form-inline row g-2" novalidate="novalidate">
           <div class="form-group col-md-8 mt-1">
               <input class="form-control" id="cardnumber-input" name="card_number" type="text" placeholder="Введите номер карты" aria-describedby="cardnumber-feeddback">
@@ -15,8 +23,11 @@ export default class CardNumberWidget {
               <div id="cardnumber-valid-feedback" class="valid-feedback">Карта не идентифицирована</div>
           </div>
           <button type="submit" id="cardnumber-submit" class="submit btn btn-success col-md-4 mt-1" title="Нажмите для проверки карты">Проверить</button>
-        </form>`,
-      imagesCardsHTML = `
+        </form>`;
+  }
+
+  static get imagesCardsHTML() {
+    return `
         <ul class="cards list-unstyled">
           <li><span class="card visa disabled" title="Visa"></span></li>
           <li><span class="card master disabled" title="Mastercard"></span></li>
@@ -26,8 +37,10 @@ export default class CardNumberWidget {
           <li><span class="card diners disabled" title="Diners Club"></span></li>
           <li><div class="card mir disabled" title="МИР"></div></li>
         </ul>
-        `,
-      descriptionHTML = `
+        `;
+  }
+  static get descriptionHTML() {
+    return `
         <h3 class="text-center mt-2">Примеры номеров банковских карт</h3>
         <table class="table table-striped table-bordered" style="width:100%">
             <thead class="text-center">
@@ -75,10 +88,6 @@ export default class CardNumberWidget {
                 </tr>
             </tbody>
         </table>`;
-
-    let innerHTML = showImages ? imagesCardsHTML + formHTML : formHTML;
-    innerHTML = showDescription ? innerHTML + descriptionHTML: innerHTML;
-    return innerHTML;
   }
 
   static get inputSelector() {
@@ -93,23 +102,17 @@ export default class CardNumberWidget {
     return '[id=cardnumber-valid-feedback]';
   }
   
-  bindToDOM(showImages=false, showDescription=false) {
-    /*
-      Параметры:
-        showImages - показывать/не показывать изображения карт (по умолчанию - не показывать)
-        showDescription - показывать/не показывать описание карт (по умолчанию - не показывать)
-    */
-
-    this.showImages = showImages;
-    this.parentEl.innerHTML = this.constructor.markup(this.showImages, showDescription);
-    const submit = this.parentEl.querySelector(this.constructor.submitSelector);
+  bindToDOM() {
+    this.parentEl.innerHTML = this.showImages ? CardNumberWidget.imagesCardsHTML + CardNumberWidget.formHTML : CardNumberWidget.formHTML;
+    this.parentEl.innerHTML =  this.showDescription ? this.parentEl.innerHTML + CardNumberWidget.descriptionHTML : this.parentEl.innerHTML;
+    const submit = this.parentEl.querySelector(CardNumberWidget.submitSelector);
     // console.log(this.parentEl, this.constructor.submitSelector, submit);
     submit.addEventListener('click', evt => this.onSubmit(evt));
   }
 
   onSubmit(evt) {
     evt.preventDefault();
-    const inputEl = this.parentEl.querySelector(this.constructor.inputSelector),
+    const inputEl = this.parentEl.querySelector(CardNumberWidget.inputSelector),
       validCard = isValidCard(inputEl.value);
     // console.log(validCard);
     if (!validCard) {
@@ -121,7 +124,7 @@ export default class CardNumberWidget {
 
 
     } else {
-      const feedbackEl = this.parentEl.querySelector(this.constructor.validFeedbackSelector);
+      const feedbackEl = this.parentEl.querySelector(CardNumberWidget.validFeedbackSelector);
       feedbackEl.innerHTML = `Карта идентифицирована - ${validCard[1]}`;
 
       inputEl.classList.remove('is-invalid');
