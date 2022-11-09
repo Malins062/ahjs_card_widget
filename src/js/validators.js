@@ -30,7 +30,7 @@ export function isValidCard(value) {
     {
       class: 'jcb',
       titlе: 'JCB',
-      regexp: '^(?:2131|1800|35\d{3})\d{11}$',
+      regexp: '^(?:2131|1800|35[0-9]{3})[0-9]{3,}$',
     },
     
     {
@@ -56,7 +56,7 @@ export function isValidCard(value) {
   if (isValidCheckDigit(value)) {
     for (let rule of RULES_CARDS) {
       const exp = new RegExp(rule.regexp);
-      console.log(value, rule, exp.test(value));
+      // console.log(value, rule, exp.test(value));
       if (exp.test(value)) {
       // if (exp.test(value)) {
         return [rule.class, rule.titlе];
@@ -69,23 +69,23 @@ export function isValidCard(value) {
 
 // Функция валидации банковских карт по алгоритму MOON
 function isValidCheckDigit(cardNumber) {
-
-  const arr = [];
-  for(var i = 0; i < cardNumber.length; i++) {
-    if(i % 2 === 0) {
-      const m = parseInt(cardNumber[i]) * 2;
-      if(m > 9) {
-        arr.push(m - 9);
-      } else {
-        arr.push(m);
-      } 
-    } else {
-        const n = parseInt(cardNumber[i]);
-        arr.push(n)
+  let sum = 0;
+  const nums =  String(cardNumber).split('').reverse().map(Number),
+    controlDigit = nums[0];
+  // console.log('nums, sum, controlDigit');
+  // console.log(nums, sum,  controlDigit);
+  for (let i = 1; i < nums.length; i++) {
+    if (i % 2 !== 0) {
+      nums[i] = nums[i] * 2;
+      if (nums[i] > 9 ) {
+        nums[i] -= 9;
       }
+    }
+    sum += nums[i];
+    // console.log(i, nums, sum);
   }
-  const summ = arr.reduce(function(a, b) { return a + b; });
-  console.log(cardNumber, Boolean(!(summ % 10)));
-  return Boolean(!(summ % 10));
 
+  const modulo = sum % 10 == 0 ? sum % 10 : 10 - sum % 10;
+  // console.log(`${modulo}=${controlDigit}`);
+  return Boolean(modulo === controlDigit);
 }
