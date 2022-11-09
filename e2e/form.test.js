@@ -33,7 +33,7 @@ describe('Card number Form', () => {
     await input.type('2200240768512994');
     await submit.click();
 
-    await page.waitFor('.cardnumber-form-widget .input.valid');
+    await page.waitFor('.cardnumber-form-widget .input.is-valid');
   });
 
   afterEach(async () => {
